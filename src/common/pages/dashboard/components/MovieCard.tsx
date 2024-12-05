@@ -1,20 +1,35 @@
+import { useNavigate } from 'react-router';
 import { Box, Typography } from '@mui/material';
 
 import { Colors } from 'src/common/theme';
+import { Path } from 'src/routing';
 
 type Props = {
+  id: string;
   title: string;
   year: string;
   imgSrc: string;
 };
 
-export function MovieCard({ title, year, imgSrc }: Props): JSX.Element {
+export function MovieCard({ id, title, year, imgSrc }: Props): JSX.Element {
+  const navigate = useNavigate();
+
+  const viewMovieCard = (): void => {
+    navigate(`${Path.EDIT_MOVIE}/${id}`);
+  };
+
   return (
     <Box
+      onClick={viewMovieCard}
       sx={{
         padding: '8px',
         borderRadius: '12px',
-        background: Colors.CARD
+        background: Colors.CARD,
+        cursor: 'pointer',
+        '&:hover': {
+          transform: 'scale(1.05)',
+          transition: 'transform 0.2s'
+        }
       }}
     >
       <Box

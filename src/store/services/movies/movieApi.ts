@@ -12,7 +12,12 @@ const { apiUrl } = config;
 export const movieApi = createApi({
   reducerPath: 'movieApi',
   baseQuery: fetchBaseQuery({ baseUrl: apiUrl, prepareHeaders }),
+  tagTypes: ['Movie'],
   endpoints: (builder) => ({
+    getMovieById: builder.query<IMovie, string>({
+      query: (id) => `${apiPaths.movies}/${id}`,
+      providesTags: ['Movie']
+    }),
     createMovie: builder.mutation<IMovie, FormData>({
       query: (body) => ({
         url: apiPaths.movies,
@@ -26,18 +31,19 @@ export const movieApi = createApi({
       }
     }),
     updateMovie: builder.mutation({
-      query: ({ id, body }) => ({
+      query: ({ id, formData }) => ({
         url: `${apiPaths.movies}/${id}`,
         method: 'PATCH',
-        body
+        body: formData
       }),
       onQueryStarted: (_arg, api) => {
         api.queryFulfilled.then(() => {
           api.dispatch(userApi.util.invalidateTags(['UserMovies']));
         });
-      }
+      },
+      invalidatesTags: ['Movie']
     })
   })
 });
 
-export const { useCreateMovieMutation, useUpdateMovieMutation } = movieApi;
+export const { useGetMovieByIdQuery, useCreateMovieMutation, useUpdateMovieMutation } = movieApi;

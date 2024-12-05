@@ -116,6 +116,7 @@ export default function DashboardPage(): JSX.Element {
             {movies.map((movie) => (
               <MovieCard
                 key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 imgSrc={movie.image}
                 year={movie.publishingYear}
