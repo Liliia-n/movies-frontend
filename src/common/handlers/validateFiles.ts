@@ -3,8 +3,10 @@ import { t } from 'i18next';
 
 import { uploadValidation } from '../constants';
 
+const BYTES_IN_KILOBYTE = 1024;
+
 const validateFile = (validTypes: string[], maxSizeInMB: number, file: File): boolean => {
-  const maxSize = maxSizeInMB * 1024 * 1024;
+  const maxSize = maxSizeInMB * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE;
 
   if (!validTypes.includes(file.type)) {
     toast.error(t('common.invalidFileType'));

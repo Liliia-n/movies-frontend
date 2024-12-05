@@ -4,8 +4,4 @@ const uploadValidation = {
   maxFiles: 1
 };
 
-const textareaValidation = {
-  descriptionMaxLength: 800
-};
-
-export { uploadValidation, textareaValidation };
+export { uploadValidation };

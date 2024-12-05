@@ -5,6 +5,7 @@ import DashboardPage from 'src/common/pages/dashboard';
 import EditMoviePage from 'src/common/pages/edit-movie';
 import LoginPage from 'src/common/pages/login';
 
+import PrivateRoute from './routes/PrivateRoute';
 import Path from './paths';
 
 const routes = [
@@ -14,7 +15,11 @@ const routes = [
   },
   {
     path: Path.DASHBOARD,
-    element: <DashboardPage />
+    element: (
+      <PrivateRoute>
+        <DashboardPage />
+      </PrivateRoute>
+    )
   },
   { path: Path.CREATE_MOVIE, element: <CreateMoviePage /> },
   { path: `${Path.EDIT_MOVIE}/:id`, element: <EditMoviePage /> }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import Path from 'src/routing/paths';
 import { clearState } from 'src/store/features/auth/authSlice';
@@ -12,17 +12,17 @@ interface PrivateRouteProps {
 
 function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const token = useAppSelector(getTokenSelector);
 
-  const isAuthenticated = token;
-
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!token) {
+      navigate(Path.LOGIN);
       dispatch(clearState());
     }
-  }, [isAuthenticated, dispatch]);
+  }, [token, navigate, dispatch]);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to={Path.LOGIN} replace />;
   }
 

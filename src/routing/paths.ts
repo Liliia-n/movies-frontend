@@ -1,9 +1,7 @@
 enum Path {
-  HOME = '/',
+  DASHBOARD = '/',
 
   LOGIN = '/login',
-
-  DASHBOARD = '/movies-list',
 
   CREATE_MOVIE = '/create-movie',
 

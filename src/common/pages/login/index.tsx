@@ -37,7 +37,7 @@ export default function LoginPage(): JSX.Element {
   const onSubmit = async (values: ILoginForm): Promise<void> => {
     try {
       const { accessToken } = await login({
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
         rememberMe: values.rememberMe || false
       }).unwrap();

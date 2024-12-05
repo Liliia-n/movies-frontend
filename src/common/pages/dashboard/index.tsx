@@ -9,8 +9,7 @@ import { PrimaryBtn, TextBtn } from 'src/common/components/buttons';
 import { Colors } from 'src/common/theme';
 import { Path } from 'src/routing';
 import { clearState } from 'src/store/features/auth/authSlice';
-import { getTokenSelector } from 'src/store/features/auth/selectors';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useAppDispatch } from 'src/store/hooks';
 import { useGetUserMoviesQuery } from 'src/store/services/user/userApi';
 
 import { MovieCard } from './components/MovieCard';
@@ -19,15 +18,7 @@ export default function DashboardPage(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const token = useAppSelector(getTokenSelector);
-
-  const {
-    data: movies,
-    isLoading,
-    isError
-  } = useGetUserMoviesQuery(undefined, {
-    skip: !token
-  });
+  const { data: movies, isLoading, isError } = useGetUserMoviesQuery();
 
   const addNewMovie = (): void => {
     navigate(Path.CREATE_MOVIE);
