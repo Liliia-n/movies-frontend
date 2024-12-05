@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Typography } from '@mui/material';
+import { t } from 'i18next';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { PrimaryBtn, TextBtn } from 'src/common/components/buttons';
@@ -38,7 +39,19 @@ export default function DashboardPage(): JSX.Element {
   };
 
   if (isLoading || isError) {
-    return <div>Loading...</div>;
+    return (
+      <Box
+        sx={{
+          background: Colors.BACKGROUND,
+          minHeight: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        {t('common.loading')}
+      </Box>
+    );
   }
 
   return (
@@ -68,15 +81,9 @@ export default function DashboardPage(): JSX.Element {
 
       {movies && movies.length > 0 ? (
         <>
-          <Box
-            width="80%"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            marginBottom=""
-          >
+          <Box width="80%" display="flex" alignItems="center" justifyContent="space-between">
             <Typography variant="h2" fontWeight="600">
-              My Movies
+              {t('dashboard.title')}
               <AddCircleOutlineIcon
                 sx={{
                   marginLeft: '15px',
@@ -96,7 +103,7 @@ export default function DashboardPage(): JSX.Element {
               }}
               onClick={logout}
             >
-              <TextBtn text="Logout" />
+              <TextBtn text="Logout" onClick={logout} />
               <LogoutIcon
                 sx={{
                   color: Colors.WHITE
@@ -127,7 +134,7 @@ export default function DashboardPage(): JSX.Element {
       ) : (
         <Box display="flex" alignItems="center" gap="40px" flexDirection="column">
           <Typography variant="h2" fontWeight="600">
-            Your movie list is empty
+            {t('dashboard.noMovies')}
           </Typography>
           <PrimaryBtn text="Add a new movie" width="40%" onClick={addNewMovie} />
         </Box>
