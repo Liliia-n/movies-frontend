@@ -1,10 +1,11 @@
 enum Colors {
-  PRIMARY = '#54749B',
+  PRIMARY = '#2BD17E',
   SECONDARY = '#0F1F33',
-  INFO = '#1554F6',
-  SUCCESS = '#4caf50',
-  ERROR = '#B00020',
-  WARNING = '#ff9800',
+  BACKGROUND = '#093545',
+  INPUT = '#224957',
+  CARD = '#092C39',
+  ERROR = '#EB5757',
+  WHITE = '#FFFFFF'
 }
 
 export default Colors;

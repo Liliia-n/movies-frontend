@@ -3,6 +3,7 @@ body {
   padding: 0;
   line-height: 1;
   font-family: 'Roboto', sans-serif;
+  position: relative;
 }
 
 p,

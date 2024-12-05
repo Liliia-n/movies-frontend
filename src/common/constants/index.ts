@@ -7,10 +7,8 @@ import {
   timeFormat
 } from './date';
 import { itemsPerPage } from './fetch';
-import { wordPressUrl } from './links';
 import patterns from './patterns';
 import { headerHeight } from './theme';
-import { isoDateTimeFormat, timezoneOffset } from './timezone';
 import { textareaValidation, uploadValidation } from './validation';
 
 export {
@@ -23,9 +21,6 @@ export {
   timeFormat,
   detailedTimeFormat,
   patterns,
-  wordPressUrl,
   headerHeight,
-  itemsPerPage,
-  isoDateTimeFormat,
-  timezoneOffset
+  itemsPerPage
 };

@@ -13,27 +13,23 @@ const theme = createTheme({
     },
     error: {
       main: Colors.ERROR
-    },
-    warning: {
-      main: Colors.WARNING
-    },
-    success: {
-      main: Colors.SUCCESS
     }
   },
   typography: {
-    fontFamily: ['Roboto', 'Arial', 'sans-serif'].join(','),
+    fontFamily: ['Montserrat', 'Arial', 'sans-serif'].join(','),
     h1: {
-      fontSize: FontSize.LARGE
+      fontSize: FontSize.LARGE,
+      color: Colors.WHITE
     },
     h2: {
-      fontSize: FontSize.MEDIUM
+      fontSize: FontSize.MEDIUM,
+      color: Colors.WHITE
     },
     h3: {
       fontSize: FontSize.PREMEDIUM
     },
     body1: {
-      fontSize: FontSize.DEFAULT
+      fontSize: FontSize.PREMEDIUM_2
     },
     body2: {
       fontSize: FontSize.SMALL

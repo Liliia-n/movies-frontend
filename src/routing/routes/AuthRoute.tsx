@@ -1,5 +1,4 @@
 import { Navigate } from 'react-router-dom';
-import { isPast } from 'date-fns';
 
 import { getTokenSelector } from 'src/store/features/auth/selectors';
 import { useAppSelector } from 'src/store/hooks';
@@ -12,7 +11,7 @@ interface AuthRouteProps {
 function AuthRoute({ children }: AuthRouteProps): JSX.Element {
   const token = useAppSelector(getTokenSelector);
 
-  const isAuthenticated = token && token.token && !isPast(new Date(token.validTo));
+  const isAuthenticated = token;
 
   if (isAuthenticated) {
     return <Navigate to={Path.DASHBOARD} replace />;

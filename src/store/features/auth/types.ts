@@ -2,7 +2,6 @@ import { Roles } from 'src/common/enums';
 
 type Token = {
   token: string;
-  validTo: string;
 };
 
 type User = {

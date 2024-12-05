@@ -19,9 +19,10 @@ export enum FontFamily {
 export enum FontSize {
   XX_LARGE = '32px',
   X_LARGE = '26px',
-  LARGE = '24px',
-  MEDIUM = '20px',
-  PREMEDIUM = '18px',
+  LARGE = '64px',
+  MEDIUM = '48px',
+  PREMEDIUM = '24px',
+  PREMEDIUM_2 = '20px',
   DEFAULT = '16px',
   SMALL = '14px',
   EXTRA_SMALL = '13px'

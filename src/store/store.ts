@@ -13,22 +13,10 @@ import {
 
 import asyncLocalStorage from 'src/store/common/storage';
 import authReducer from 'src/store/features/auth/authSlice';
-import roleReducer from 'src/store/features/role/roleSlice';
-import {
-  authApi,
-  branchApi,
-  categoryApi,
-  classApi,
-  clubManagementApi,
-  disciplineApi,
-  divisionApi,
-  matchApi,
-  matchScoreApi,
-  provinceApi,
-  rangeApi,
-  sponsorApi,
-  targetApi
-} from 'src/store/services';
+
+import { authApi } from './services/auth/authApi';
+import { movieApi } from './services/movies/movieApi';
+import { userApi } from './services/user/userApi';
 
 const persistConfig = {
   key: 'auth',
@@ -36,29 +24,21 @@ const persistConfig = {
   whitelist: ['user', 'token']
 };
 
-const rolePersistConfig = {
-  key: 'role',
-  storage: asyncLocalStorage,
-  whitelist: ['role']
-};
-
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-const persistedRoleReducer = persistReducer(rolePersistConfig, roleReducer);
 
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
-    authState: persistedAuthReducer,
-    roleState: persistedRoleReducer
+    [userApi.reducerPath]: userApi.reducer,
+    [movieApi.reducerPath]: movieApi.reducer,
+    authState: persistedAuthReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
-    }).concat(
-      authApi.middleware,
-    )
+    }).concat(authApi.middleware, userApi.middleware, movieApi.middleware)
 });
 
 export const persistedStore = persistStore(store);

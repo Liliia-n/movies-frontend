@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { isPast } from 'date-fns';
 
 import Path from 'src/routing/paths';
 import { clearState } from 'src/store/features/auth/authSlice';
@@ -15,7 +14,7 @@ function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
   const dispatch = useAppDispatch();
   const token = useAppSelector(getTokenSelector);
 
-  const isAuthenticated = token && token.token && !isPast(new Date(token.validTo));
+  const isAuthenticated = token;
 
   useEffect(() => {
     if (!isAuthenticated) {
