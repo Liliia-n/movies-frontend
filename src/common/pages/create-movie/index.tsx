@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, OutlinedInput, Typography } from '@mui/material';
+import { t } from 'i18next';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
@@ -50,11 +51,11 @@ export default function CreateMoviePage(): JSX.Element {
       }
 
       await createMovie(formData).unwrap();
-      toast.success('Movie created successfully');
+      toast.success(t('common.movieCreated'));
       onCancel();
       navigate(Path.DASHBOARD);
     } catch (err) {
-      toast.error('Error creating movie');
+      toast.error(t('common.movieCreatedDelete'));
     }
   };
 
@@ -84,7 +85,7 @@ export default function CreateMoviePage(): JSX.Element {
       />
 
       <Typography variant="h2" sx={{ color: Colors.WHITE }} marginBottom="120px">
-        Create a new movie
+        {t('common.createMovie')}
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" gap="120px">
@@ -124,8 +125,8 @@ export default function CreateMoviePage(): JSX.Element {
               />
             </Box>
             <Box display="flex" gap="16px" alignItems="center">
-              <OutlinedBtn text="Cancel" onClick={onCancel} />
-              <PrimaryBtn text="Submit" type="submit" />
+              <OutlinedBtn text={t('common.cancel')} onClick={onCancel} />
+              <PrimaryBtn text={t('common.submit')} type="submit" />
             </Box>
           </Box>
         </Box>

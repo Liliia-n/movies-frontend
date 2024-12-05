@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, OutlinedInput, Typography } from '@mui/material';
+import { t } from 'i18next';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
@@ -70,10 +71,10 @@ export default function EditMoviePage(): JSX.Element {
         id: movieDetails?.id ?? '',
         formData
       }).unwrap();
-      toast.success('Movie updated successfully');
+      toast.success(t('common.movieUpdated'));
       onCancel();
     } catch (err) {
-      toast.error('Error updating movie');
+      toast.success(t('common.movieUpdatedDelete'));
     }
   };
 
@@ -103,7 +104,7 @@ export default function EditMoviePage(): JSX.Element {
       />
 
       <Typography variant="h2" sx={{ color: Colors.WHITE }} marginBottom="120px">
-        Edit
+        {t('common.edit')}
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" gap="120px">

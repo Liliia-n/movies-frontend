@@ -69,7 +69,7 @@ export default function LoginPage(): JSX.Element {
       }}
     >
       <Typography variant="h1" marginBottom="40px">
-        Sign in
+        {t('login.mainText')}
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap="24px" width="300px">
@@ -122,7 +122,7 @@ export default function LoginPage(): JSX.Element {
             width="100%"
             loading={isLoading}
             disabled={isLoading}
-            text="Login"
+            text={t('login.btn')}
             type="submit"
           />
         </Box>

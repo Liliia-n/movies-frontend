@@ -4,6 +4,23 @@
     "noData": "No data found",
     "error": "Something went wrong, please try again later",
     "name": "Name",
-    "surname": "Surname"
+    "surname": "Surname",
+    "invalidEmail": "Invalid email",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "edit": "Edit",
+    "createMovie": "Create a new movie",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "movieCreated": "Movie created successfully",
+    "movieUpdated": "Movie updated successfully",
+    "movieCreatedDelete": "Error creating movie",
+    "movieUpdatedDelete": "Error updating movie"
+  },
+  "login": {
+    "mainText": "Sign in",
+    "btn": "Login",
+    "loginSuccess": "Login successful",
+    "loginFailed": "Login failed"
   }
 }
