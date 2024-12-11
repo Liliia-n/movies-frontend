@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Typography } from '@mui/material';
 import { t } from 'i18next';
+import { useRouter } from 'next/router';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { PrimaryBtn, TextBtn } from 'src/common/components/buttons';
@@ -15,18 +15,18 @@ import { useGetUserMoviesQuery } from 'src/store/services/user/userApi';
 import { MovieCard } from './components/MovieCard';
 
 export default function DashboardPage(): JSX.Element {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useAppDispatch();
 
   const { data: movies, isLoading, isError } = useGetUserMoviesQuery();
 
   const addNewMovie = (): void => {
-    navigate(Path.CREATE_MOVIE);
+    navigate.push(Path.CREATE_MOVIE);
   };
 
   const logout = (): void => {
     dispatch(clearState());
-    navigate(Path.LOGIN);
+    navigate.push(Path.LOGIN);
   };
 
   if (isLoading || isError) {
@@ -54,11 +54,13 @@ export default function DashboardPage(): JSX.Element {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        padding: '80px 0 150px'
+        padding: '80px 0 150px',
+        position: 'relative'
       }}
     >
       <img
-        src={FooterImg}
+        // @ts-expect-error src is not a valid prop
+        src={FooterImg.src}
         alt="footer"
         width="100%"
         style={{

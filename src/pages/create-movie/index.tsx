@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, OutlinedInput, Typography } from '@mui/material';
 import { t } from 'i18next';
+import { useRouter } from 'next/router';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
@@ -18,7 +18,7 @@ import { createMovieFormSchema, ICreateMovieForm } from './validation';
 
 export default function CreateMoviePage(): JSX.Element {
   const [img, setImg] = useState<File | null>(null);
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const [createMovie] = useCreateMovieMutation();
 
@@ -36,7 +36,7 @@ export default function CreateMoviePage(): JSX.Element {
   const onCancel = (): void => {
     reset();
     setImg(null);
-    navigate(Path.DASHBOARD);
+    navigate.push(Path.DASHBOARD);
   };
 
   const onSubmit = async (values: ICreateMovieForm): Promise<void> => {
@@ -53,7 +53,7 @@ export default function CreateMoviePage(): JSX.Element {
       await createMovie(formData).unwrap();
       toast.success(t('common.movieCreated'));
       onCancel();
-      navigate(Path.DASHBOARD);
+      navigate.push(Path.DASHBOARD);
     } catch (err) {
       toast.error(t('common.movieCreatedDelete'));
     }
@@ -68,12 +68,14 @@ export default function CreateMoviePage(): JSX.Element {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        padding: '80px 0 150px'
+        padding: '80px 0 150px',
+        position: 'relative'
       }}
     >
       <img
-        src={FooterImg}
-        alt="footer"
+        // @ts-expect-error src is not a valid prop
+        src={FooterImg.src}
+        alt="footer ui"
         width="100%"
         style={{
           position: 'absolute',
@@ -83,7 +85,6 @@ export default function CreateMoviePage(): JSX.Element {
           objectFit: 'contain'
         }}
       />
-
       <Typography variant="h2" sx={{ color: Colors.WHITE }} marginBottom="120px">
         {t('common.createMovie')}
       </Typography>

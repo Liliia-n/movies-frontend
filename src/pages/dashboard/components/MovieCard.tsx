@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router';
 import { Box, Typography } from '@mui/material';
+import { useRouter } from 'next/router';
 
 import { Colors } from 'src/common/theme';
 import { Path } from 'src/routing';
@@ -12,10 +12,10 @@ type Props = {
 };
 
 export function MovieCard({ id, title, year, imgSrc }: Props): JSX.Element {
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const viewMovieCard = (): void => {
-    navigate(`${Path.EDIT_MOVIE}/${id}`);
+    navigate.push(`${Path.EDIT_MOVIE}/${id}`);
   };
 
   return (

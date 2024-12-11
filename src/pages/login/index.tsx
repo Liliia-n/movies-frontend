@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Checkbox, FormControlLabel, OutlinedInput, Typography } from '@mui/material';
 import { t } from 'i18next';
+import { useRouter } from 'next/router';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { PrimaryBtn } from 'src/common/components/buttons';
@@ -17,7 +17,7 @@ import { useLoginMutation } from 'src/store/services/auth/authApi';
 import { ILoginForm, loginFormSchema } from './validation';
 
 export default function LoginPage(): JSX.Element {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useAppDispatch();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -48,7 +48,7 @@ export default function LoginPage(): JSX.Element {
         })
       );
 
-      navigate(Path.DASHBOARD);
+      navigate.push(Path.DASHBOARD);
 
       toast.success(t('login.loginSuccess'));
       reset();
@@ -65,7 +65,8 @@ export default function LoginPage(): JSX.Element {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        position: 'relative'
       }}
     >
       <Typography variant="h1" marginBottom="40px">
@@ -129,7 +130,8 @@ export default function LoginPage(): JSX.Element {
       </FormProvider>
 
       <img
-        src={FooterImg}
+        // @ts-expect-error src is not a valid prop
+        src={FooterImg.src}
         alt="footer"
         width="100%"
         style={{

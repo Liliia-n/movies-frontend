@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, OutlinedInput, Typography } from '@mui/material';
 import { t } from 'i18next';
+import { useRouter } from 'next/router';
 
 import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
@@ -18,7 +19,7 @@ import { IUpdateMovieForm, updateMovieFormSchema } from './validation';
 
 export default function EditMoviePage(): JSX.Element {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const [img, setImg] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
@@ -53,7 +54,7 @@ export default function EditMoviePage(): JSX.Element {
   const onCancel = (): void => {
     reset();
     setImg(null);
-    navigate(Path.DASHBOARD);
+    navigate.push(Path.DASHBOARD);
   };
 
   const onSubmit = async (values: IUpdateMovieForm): Promise<void> => {
@@ -87,11 +88,13 @@ export default function EditMoviePage(): JSX.Element {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        padding: '80px 0 150px'
+        padding: '80px 0 150px',
+        position: 'relative'
       }}
     >
       <img
-        src={FooterImg}
+        // @ts-expect-error src is not a valid prop
+        src={FooterImg.src}
         alt="footer"
         width="100%"
         style={{

@@ -1,5 +1,5 @@
 enum Path {
-  DASHBOARD = '/',
+  DASHBOARD = '/dashboard',
 
   LOGIN = '/login',
 

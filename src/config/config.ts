@@ -1,3 +1,3 @@
 export const config = {
-  apiUrl: import.meta.env.VITE_SERVER_API_URL
+  apiUrl: process.env.NEXT_PUBLIC_SERVER_API_URL
 };
