@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, OutlinedInput, Typography } from '@mui/material';
 import { t } from 'i18next';
 import { useRouter } from 'next/router';
 
-import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
 import { DragAndDropZone } from 'src/common/components/drag-and-drop';
 import FormProvider from 'src/common/components/hook-form/form-provider';
@@ -18,14 +16,14 @@ import { useGetMovieByIdQuery, useUpdateMovieMutation } from 'src/store/services
 import { IUpdateMovieForm, updateMovieFormSchema } from './validation';
 
 export default function EditMoviePage(): JSX.Element {
-  const { id } = useParams();
-  const navigate = useRouter();
+  const router = useRouter();
+  const { id } = router.query;
 
   const [img, setImg] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [publishedYear, setPublishedYear] = useState<string>('');
 
-  const { data: movieDetails, isLoading } = useGetMovieByIdQuery(id ?? '', {
+  const { data: movieDetails, isLoading } = useGetMovieByIdQuery(typeof id === 'string' ? id : '', {
     skip: !id
   });
 
@@ -54,7 +52,7 @@ export default function EditMoviePage(): JSX.Element {
   const onCancel = (): void => {
     reset();
     setImg(null);
-    navigate.push(Path.DASHBOARD);
+    router.push(Path.DASHBOARD);
   };
 
   const onSubmit = async (values: IUpdateMovieForm): Promise<void> => {
@@ -80,32 +78,7 @@ export default function EditMoviePage(): JSX.Element {
   };
 
   return (
-    <Box
-      sx={{
-        background: Colors.BACKGROUND,
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '80px 0 150px',
-        position: 'relative'
-      }}
-    >
-      <img
-        // @ts-expect-error src is not a valid prop
-        src={FooterImg.src}
-        alt="footer"
-        width="100%"
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          zIndex: 1,
-          objectFit: 'contain'
-        }}
-      />
-
+    <>
       <Typography variant="h2" sx={{ color: Colors.WHITE }} marginBottom="120px">
         {t('common.edit')}
       </Typography>
@@ -161,6 +134,6 @@ export default function EditMoviePage(): JSX.Element {
           </Box>
         </Box>
       </FormProvider>
-    </Box>
+    </>
   );
 }

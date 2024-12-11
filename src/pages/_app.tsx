@@ -7,6 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import i18next from 'i18next';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 
+import Layout from 'src/common/layout';
 import { theme } from 'src/common/theme';
 import { store } from 'src/store/store';
 
@@ -21,7 +22,9 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         <I18nextProvider i18n={i18next}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ToastContainer />
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </LocalizationProvider>
         </I18nextProvider>
       </ThemeProvider>

@@ -5,7 +5,6 @@ import { Box, Checkbox, FormControlLabel, OutlinedInput, Typography } from '@mui
 import { t } from 'i18next';
 import { useRouter } from 'next/router';
 
-import FooterImg from 'src/common/assets/waves.png';
 import { PrimaryBtn } from 'src/common/components/buttons';
 import FormProvider from 'src/common/components/hook-form/form-provider';
 import { Colors } from 'src/common/theme';
@@ -58,17 +57,7 @@ export default function LoginPage(): JSX.Element {
   };
 
   return (
-    <Box
-      sx={{
-        background: Colors.BACKGROUND,
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        position: 'relative'
-      }}
-    >
+    <>
       <Typography variant="h1" marginBottom="40px">
         {t('login.mainText')}
       </Typography>
@@ -128,20 +117,6 @@ export default function LoginPage(): JSX.Element {
           />
         </Box>
       </FormProvider>
-
-      <img
-        // @ts-expect-error src is not a valid prop
-        src={FooterImg.src}
-        alt="footer"
-        width="100%"
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          zIndex: 1,
-          objectFit: 'contain'
-        }}
-      />
-    </Box>
+    </>
   );
 }

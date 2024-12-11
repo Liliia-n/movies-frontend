@@ -6,7 +6,6 @@ import { Box, OutlinedInput, Typography } from '@mui/material';
 import { t } from 'i18next';
 import { useRouter } from 'next/router';
 
-import FooterImg from 'src/common/assets/waves.png';
 import { OutlinedBtn, PrimaryBtn } from 'src/common/components/buttons';
 import { DragAndDropZone } from 'src/common/components/drag-and-drop';
 import FormProvider from 'src/common/components/hook-form/form-provider';
@@ -60,31 +59,7 @@ export default function CreateMoviePage(): JSX.Element {
   };
 
   return (
-    <Box
-      sx={{
-        background: Colors.BACKGROUND,
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '80px 0 150px',
-        position: 'relative'
-      }}
-    >
-      <img
-        // @ts-expect-error src is not a valid prop
-        src={FooterImg.src}
-        alt="footer ui"
-        width="100%"
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          zIndex: 1,
-          objectFit: 'contain'
-        }}
-      />
+    <>
       <Typography variant="h2" sx={{ color: Colors.WHITE }} marginBottom="120px">
         {t('common.createMovie')}
       </Typography>
@@ -132,6 +107,6 @@ export default function CreateMoviePage(): JSX.Element {
           </Box>
         </Box>
       </FormProvider>
-    </Box>
+    </>
   );
 }
