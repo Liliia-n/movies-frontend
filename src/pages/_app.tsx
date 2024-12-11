@@ -13,7 +13,7 @@ import { store } from 'src/store/store';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'src/locales/i18n';
-import '../App.css';
+import './App.css';
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
