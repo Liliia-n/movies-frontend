@@ -13,7 +13,7 @@ import { Colors } from 'src/common/theme';
 import { Path } from 'src/routing';
 import { useCreateMovieMutation } from 'src/store/services/movies/movieApi';
 
-import { createMovieFormSchema, ICreateMovieForm } from './validation';
+import { createMovieFormSchema, ICreateMovieForm } from '../../validation/create-movie/validation';
 
 export default function CreateMoviePage(): JSX.Element {
   const [img, setImg] = useState<File | null>(null);

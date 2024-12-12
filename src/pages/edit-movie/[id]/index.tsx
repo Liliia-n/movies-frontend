@@ -13,7 +13,7 @@ import { Colors } from 'src/common/theme';
 import { Path } from 'src/routing';
 import { useGetMovieByIdQuery, useUpdateMovieMutation } from 'src/store/services/movies/movieApi';
 
-import { IUpdateMovieForm, updateMovieFormSchema } from './validation';
+import { IUpdateMovieForm, updateMovieFormSchema } from '../../../validation/edit-movie/validation';
 
 export default function EditMoviePage(): JSX.Element {
   const router = useRouter();

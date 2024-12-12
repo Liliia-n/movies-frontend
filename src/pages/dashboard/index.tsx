@@ -6,12 +6,11 @@ import { useRouter } from 'next/router';
 
 import { PrimaryBtn, TextBtn } from 'src/common/components/buttons';
 import { Colors } from 'src/common/theme';
+import { MovieCard } from 'src/components/create-movie/MovieCard';
 import { Path } from 'src/routing';
 import { clearState } from 'src/store/features/auth/authSlice';
 import { useAppDispatch } from 'src/store/hooks';
 import { useGetUserMoviesQuery } from 'src/store/services/user/userApi';
-
-import { MovieCard } from './components/MovieCard';
 
 export default function DashboardPage(): JSX.Element {
   const navigate = useRouter();

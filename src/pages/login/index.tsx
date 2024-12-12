@@ -13,7 +13,7 @@ import { setToken } from 'src/store/features/auth/authSlice';
 import { useAppDispatch } from 'src/store/hooks';
 import { useLoginMutation } from 'src/store/services/auth/authApi';
 
-import { ILoginForm, loginFormSchema } from './validation';
+import { ILoginForm, loginFormSchema } from '../../validation/login/validation';
 
 export default function LoginPage(): JSX.Element {
   const navigate = useRouter();
