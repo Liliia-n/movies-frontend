@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import FooterImg from 'src/common/assets/waves.png';
 import { Colors } from 'src/common/theme';
 
 interface LayoutProps {
@@ -24,8 +23,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
     >
       {children}
       <img
-        // @ts-expect-error src is not a valid prop
-        src={FooterImg?.src || ''}
+        src="/waves.png"
         alt="footer ui"
         width="100%"
         style={{
