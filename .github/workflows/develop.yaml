@@ -18,8 +18,6 @@ jobs:
           cat ./.env
       - name: Build
         run: npm run build
-      - name: Start
-        run: npm run start
         env:
           CI: false
       - name: Deploy to S3
